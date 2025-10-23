@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/general.css" />
+    <link rel="stylesheet" href="./styles/product.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Nombre del item</title>
+    <script src="./scripts/producto.js"></script>
+    <script src="./scripts/general.js"></script>
+    <script src="components/Header.js"></script>
+    <script src="components/Footer.js"></script>
+  </head>
+  <body>
+    <app-header></app-header> 
+    <main class="item-background">
+      <section class="item-main">
+          <div class="item-image">
+            <img/>
+        </div>
+        <div class="item-info">
+          <h1 class="item-title"></h1>
+          <div class="item-price-stock">
+            <span class="item-precio-destacado"></span>
+          </div>
+          <div class="item-button-group">
+            <button class="button-comprar-ahora">Comprar ahora</button>
+            <button class="button-agregar-al-carrito" onclick="agregarItemCarrito()">
+              Agregar al carrito
+            </button>
+          </div>
+          <!--Para los botones-->
+          <div class="cajitas-variantes">
+            <div class="texto-variantes">Importe:</div>
+                      <!--Defino listbox para las cajitas-->
+              <div id="var-cantidad-cajita" class="cantidad-cajita" role="listbox"></div>
+          </div>
+          <div class="item-details">
+            <h2>Plataforma</h2>
+            <p class="item-caracteristicas"></p>
+            <h2>Descripción</h2>
+            <p class="item-descripcion"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <app-footer></app-footer>
+  </body>
+  <script>
+    renderizarItemSeleccionado();
+    mostrarResultadosBusqueda();
+  </script>
+</html>

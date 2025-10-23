@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/general.css" />
+    <link rel="stylesheet" href="./styles/shopping-cart.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/cart.js"></script>
+    <script src="components/Header.js"></script>
+    <script src="components/Footer.js"></script>
+    <title>Carrito</title>
+  </head>
+  <body>
+    <app-header></app-header>
+    <main class="background">
+      <div id="productos" class="left-side">
+        <h1>Productos</h1>
+      </div>
+      <div id="precios" class="right-side"></div>
+    </main>
+    <app-footer></app-footer>
+    <script>
+      listarProductosCarrito();
+      mostrarResultadosBusqueda();
+    </script>
+  </body>
+</html>
