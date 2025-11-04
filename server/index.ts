@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { authRouter } from './routes/auth';
+import { ItemsRoutes } from './routes/items.routes';
+import { AuthRouter } from './routes/auth.routes';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
@@ -17,6 +18,7 @@ await mongoose.connect(uri).then(()=>console.log("ola"));
 
 app.use(express.json());//parsea el json provenientes de la solicitudes para colcarlo en la req.body
 
-app.use('/auth', authRouter);//rutas de auth
+app.use('/auth', AuthRouter);//rutas de auth
+app.use('/items',ItemsRoutes)
 
 app.listen(3000, () => { console.log("ola2") })
