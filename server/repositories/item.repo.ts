@@ -6,6 +6,12 @@ export const ItemRepo = {
     return await ItemModel.findById(id);
   },
 
+  async findItemsInBatch(page: number, sizeOfPage: number) {
+    return await ItemModel.find()
+      .skip((page - 1) * sizeOfPage)
+      .limit(sizeOfPage);
+  },
+
   async createItem(data: Item) {
     const newItem = new ItemModel(data);
     return await newItem.save();
