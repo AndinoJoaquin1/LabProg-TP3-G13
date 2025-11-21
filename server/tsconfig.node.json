@@ -18,6 +18,6 @@
     "noUnusedParameters": true,// genera errores por parametros no utilizados
     "erasableSyntaxOnly": true,// cague, la sintaxis que no se puede generar en JS se elimina sin afectar el resultado
     "noUncheckedSideEffectImports": true,//??
-    "ignoreDeprecations":"6.0"
+    "ignoreDeprecations":"6.0",
   }
 }

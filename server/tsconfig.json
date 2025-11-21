@@ -1,4 +1,5 @@
 {
+  "exclude": ["static"],
   "files": ["index.ts"],
     "references": [
     { "path": "./tsconfig.node.json" }
