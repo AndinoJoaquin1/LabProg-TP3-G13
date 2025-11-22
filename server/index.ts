@@ -18,7 +18,8 @@ await mongoose.connect(uri).then(()=>console.log("ola"));
 
 app.use(express.json());//parsea el json provenientes de la solicitudes para colcarlo en la req.body
 
-app.use('/auth', authRouter);//rutas de auth
+app.use('/auth', AuthRouter);//rutas de auth
+app.use('/items',ItemsRoutes)
 
 //rutas para obtener archivos estaticos(html/css/js)
 //express.static es un middleware que empaqueta? (creo) los archivos estaticos indicados en el path y para servirlo a los hosts
