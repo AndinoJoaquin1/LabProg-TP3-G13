@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { authRouter } from './routes/auth.routes';
+import { AuthRouter } from './routes/auth.routes';
+import { ItemsRoutes } from './routes/item.routes';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
@@ -18,8 +19,8 @@ await mongoose.connect(uri).then(()=>console.log("ola"));
 
 app.use(express.json());//parsea el json provenientes de la solicitudes para colcarlo en la req.body
 
-app.use('/auth', AuthRouter);//rutas de auth
-app.use('/items',ItemsRoutes)
+app.use('/api/auth', AuthRouter);//rutas de auth
+app.use('/api/items',ItemsRoutes)
 
 //rutas para obtener archivos estaticos(html/css/js)
 //express.static es un middleware que empaqueta? (creo) los archivos estaticos indicados en el path y para servirlo a los hosts
@@ -27,5 +28,6 @@ app.use('/',express.static("static/home"))
 app.use('/components',express.static("static/components"))
 app.use('/common',express.static("static/common"))
 app.use('/images',express.static("static/img"))
+app.use('/item/:id/:nombre',express.static("static/item-page"))
 
 app.listen(3000, () => { console.log("ola2") })

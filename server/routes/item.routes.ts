@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { CreateItem } from "../controllers/item.controllers";
+import { createItem, getItemById, getAllItems } from "../controllers/item.controllers";
 
 export const ItemsRoutes: Router = Router()
 
-ItemsRoutes.post("/create",CreateItem)
+ItemsRoutes.post("/",createItem)
+ItemsRoutes.get("/",getAllItems)
+ItemsRoutes.get("/:id",getItemById)

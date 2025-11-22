@@ -1,6 +1,6 @@
 const obtenerItems = async () => {
   //obtiene los item del archivo y luego lo parsea de json (aca luego va la api del backend)
-  const items = await fetch("items.json").then((res) => res.json());
+  const items = await fetch("http://localhost:3000/api/items/").then((res) => res.json());
   console.log(items);
 
   //este va a ser la seccion que contenga los items. si o si hay que seleccionar por id
@@ -12,7 +12,7 @@ const obtenerItems = async () => {
     const a = document.createElement("a");
     //le agregamos los estilos
     a.classList.add("item-act", "fade");
-    a.href = "product.html";
+    a.href = `/item/${item.id}/${item.nombre}`;
     a.setAttribute("data-plataforma", item.plataforma);
     a.addEventListener("click", () => {
       localStorage.setItem("item", JSON.stringify(item));

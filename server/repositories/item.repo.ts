@@ -10,4 +10,9 @@ export const ItemRepo = {
     const newItem = new ItemModel(data);
     return await newItem.save();
   },
+
+  //temporal
+  async getAllItems() {
+    return await ItemModel.find({});
+  },
 };
