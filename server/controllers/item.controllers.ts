@@ -29,9 +29,10 @@ export const getAllItems = async (req:Request,res: Response) => {
     }
 }
 
-export const getItemById = async (req: Request<{}, {}, String>, res: Response) => {
+export const getItemById = async (req: Request, res: Response) => {
     try {
-        const item = await ItemRepo.findItemWithId(req.body)
+        console.log(req.body)
+        const item = await ItemRepo.findItemWithId(req.params.id)
         res.status(200).json(item)
     } catch (error) {
         res.status(500).json({

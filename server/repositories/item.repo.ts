@@ -2,7 +2,7 @@ import ItemModel from "../schemas/item.schemas";
 import type { Item } from "../types";
 
 export const ItemRepo = {
-  async findItemWithId(id: String) {
+  async findItemWithId(id: any) {
     return await ItemModel.findById(id);
   },
 

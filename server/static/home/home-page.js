@@ -12,7 +12,7 @@ const obtenerItems = async () => {
     const a = document.createElement("a");
     //le agregamos los estilos
     a.classList.add("item-act", "fade");
-    a.href = `/item/${item.id}/${item.nombre}`;
+    a.href = `/item/${item._id}/${item.nombre}`;
     a.setAttribute("data-plataforma", item.plataforma);
     a.addEventListener("click", () => {
       localStorage.setItem("item", JSON.stringify(item));

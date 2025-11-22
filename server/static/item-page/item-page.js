@@ -8,22 +8,22 @@ const parseMontoUSD = (nombre) => {
 // para extraer el nombre del producto sin el monto
 const baseKey = (nombre) => nombre.replace(/\s*\d+\s*usd/i, "").trim();
 
-async function renderizarItemSeleccionado() {
+const renderizarItemSeleccionado=async()=> {
   // busco el item que se selecciono en el listado, en el local storage, si no existe corto para prevenir errores
-  const itemSel = JSON.parse(localStorage.getItem("item"));
-  if (!itemSel) return;
+  const url = window.location.pathname;
 
-  document.title=(item.name)
+  const urlPartes = url.split("/");
 
   // cargo toda la lista de items que esta en el items.json
-  const items = await fetch("items.json").then((r) => r.json());
+  const item = await fetch(`http://localhost:3000/api/items/${urlPartes[2]}`).then((r) => r.json());
+  console.log(item)
 
   // Extraigo el nombre del producto sin el monto
-  const key = baseKey(itemSel.nombre);
+  const key = baseKey(item.nombre);
   //Busco todas las variantes del mismo producto, basandonos en el mismo nombre del producto sin el monto
-  const variantes = items
+ /* const variantes = item
     .filter(
-      (it) => baseKey(it.nombre) === key && it.plataforma === itemSel.plataforma
+      (it) => baseKey(it.nombre) === key && it.plataforma === item.plataforma
     )
     .map((it) => ({
       ...it,
@@ -32,18 +32,18 @@ async function renderizarItemSeleccionado() {
     }))
     //ordeno las variantes obtenidas por monto en USD
     .sort((a, b) => a.montoUSD - b.montoUSD);
-  console.log(variantes);
+  console.log(variantes);*/
   // Agrego el contenido al html con el item seleccionado, buscando en el DOM por sus clases y poniendo la informacion del item seleccionado
   const imagen = document.querySelector(".item-image img"); // busco en product.html el primer elemento del DOM que coincida
-  imagen.src = itemSel.image;
-  imagen.alt = itemSel.nombre;
+  imagen.src = `/images/${item.image}`;
+  imagen.alt = item.nombre;
 
-  document.querySelector(".item-title").textContent = itemSel.nombre;
+  document.querySelector(".item-title").textContent = item.nombre;
   document.querySelector(".item-precio-destacado").textContent = `$ ${Number(
-    itemSel.precio
+    item.precio
   ).toLocaleString("es-AR")}`;
   document.querySelector(".item-caracteristicas").textContent =
-    itemSel.plataforma;
+    item.plataforma;
   document.querySelector(".item-descripcion").textContent = key; // o lo que quieras mostrar
 
   // --- hago todas las cajitas de montos ---
@@ -52,7 +52,7 @@ async function renderizarItemSeleccionado() {
   grid.innerHTML = "";
   //Para cada variante creo un boton, creando el elemento en memoria
   if (variantes.length > 1) {
-    variantes.forEach((v) => {
+    /*variantes.forEach((v) => {
       //esto crea en el documento un <button></button>
       const btn = document.createElement("button");
       btn.type = "button";
@@ -80,19 +80,17 @@ async function renderizarItemSeleccionado() {
         imagen.src = v.image;
         imagen.alt = v.nombre;
 
-        // guardo la seleccion en el local storage para que si se agrega al carrito sea con esa variante
-        localStorage.setItem("item", JSON.stringify(v));
       });
       //agrego el boton al grid
       grid.appendChild(btn);
-    });
+    });*/
   } else {
     //si es un item sin variantes, oculto el texto
     const textoVariante = document.querySelector(".texto-variantes");
     textoVariante.style.display = "none";
   }
   // seleccionar por defecto el monto del item con el que llegaste
-  const montoInicial = parseMontoUSD(itemSel.nombre);
+  const montoInicial = parseMontoUSD(item.nombre);
   const btnInicial =
     [...grid.querySelectorAll(".estilo-btn")].find(
       (b) => Number(b.dataset.monto) === montoInicial
