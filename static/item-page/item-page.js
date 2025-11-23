@@ -9,17 +9,20 @@ const parseMontoUSD = (nombre) => {
 const baseKey = (nombre) => nombre.replace(/\s*\d+\s*usd/i, "").trim();
 
 const renderizarItemSeleccionado=async()=> {
-  // busco el item que se selecciono en el listado, en el local storage, si no existe corto para prevenir errores
+ //como el id viene  en la url, la extraigo para asi poder hacer la consulta al endpoint
   const url = window.location.pathname;
 
   const urlPartes = url.split("/");
+  //coloco el nombre del item en el titulo del documento
+  document.title=decodeURI(urlPartes[3])
 
-  // cargo toda la lista de items que esta en el items.json
-  const item = await fetch(`http://localhost:3000/api/items/${urlPartes[2]}`).then((r) => r.json());
-  console.log(item)
+  //se hace la consulta al endpoitn
+  const res = await fetch(`http://localhost:3000/api/items/${urlPartes[2]}`)
+  const item = await res.json(); //<= por que esto es una promise????
 
   // Extraigo el nombre del producto sin el monto
   const key = baseKey(item.nombre);
+  //TODO: hay que refactorizar esto para que funcione
   //Busco todas las variantes del mismo producto, basandonos en el mismo nombre del producto sin el monto
  /* const variantes = item
     .filter(
