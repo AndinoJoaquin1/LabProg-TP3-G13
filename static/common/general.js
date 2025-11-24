@@ -1,5 +1,6 @@
 const mostrarResultadosBusqueda = async () => {
-  const items = await fetch("items.json").then((res) => res.json());
+  const res = await fetch("http://localhost:3000/api/items/")
+  const items = await res.json();
 
   const input = document.getElementById("nav-input");
   const listaResultados = document.getElementById("search-results-container");
@@ -37,7 +38,7 @@ const mostrarResultadosBusqueda = async () => {
       const div = document.createElement("div");
       div.classList.add("result-item");
       const img = document.createElement("img");
-      img.src = item.image;
+      img.src = `/images/${item.image}`
       img.alt = item.nombre;
       img.classList.add("result-image");
       const nombre = document.createElement("span");

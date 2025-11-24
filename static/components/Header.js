@@ -3,7 +3,7 @@ class Header extends HTMLElement {
     this.innerHTML = `  <header class="header">
       <nav>
         <div class="nav-left-section">
-          <a class="nav-logo" href="index.html"
+          <a class="nav-logo" href="/"
             ><img
               class="nav-logo-image"
               src="img/vector-degradado-logotipo-colorido-pajaro_343694-1365.jpg"
