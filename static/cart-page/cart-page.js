@@ -35,7 +35,7 @@ const listarProductosCarrito = () => {
     divQuantity.classList.add("cart-item-quantity");
 
     itemImg.classList.add("cart-item-image");
-    itemImg.src = item.image;
+    itemImg.src = `/images/${item.image}`;
     itemImg.alt = item.nombre; //el alt para la imagen
 
     paragNombre.classList.add("name");
@@ -66,7 +66,7 @@ const listarProductosCarrito = () => {
     trashButton.addEventListener("click", function () {
       borrarItemCarrito(item.id);
     });
-    trashImg.src = "icons/trash.svg";
+    trashImg.src = "/images/trash.png";
     trashImg.alt = "eliminar";
 
     //se agregan los items como hijos de sus respectivos padres

@@ -6,7 +6,7 @@ class Header extends HTMLElement {
           <a class="nav-logo" href="/"
             ><img
               class="nav-logo-image"
-              src="img/vector-degradado-logotipo-colorido-pajaro_343694-1365.jpg"
+              src="/images/logotipo.jpg"
               alt=""
           /></a>
         </div>
@@ -20,10 +20,10 @@ class Header extends HTMLElement {
         <div class="nav-right-section">
           <a class="nav-menu nav-crear-cuenta" href="">Crear cuenta</a>
           <a class="nav-menu nav-ingresar" href="">Ingresar</a>
-          <a class="nav-menu nav-carrito" href="shopping-cart.html"
+          <a class="nav-menu nav-carrito" href="/cart"
             ><img
               class="nav-carrito-icon"
-              src="icons/shopping-cart-white.svg"
+              src="/images/shopping-cart-white.png"
               alt="Carrito"
           /></a>
         </div>
