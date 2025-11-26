@@ -20,22 +20,25 @@ const renderizarItemSeleccionado=async()=> {
   const res = await fetch(`http://localhost:3000/api/items/${urlPartes[2]}`)
   const item = await res.json(); //<= por que esto es una promise????
 
-  // Extraigo el nombre del producto sin el monto
+ //traigo todo los items
+const resAll = await fetch("/api/items");
+const todos = await resAll.json();
+   // Extraigo el nombre del producto sin el monto
   const key = baseKey(item.nombre);
-  //TODO: hay que refactorizar esto para que funcione
-  //Busco todas las variantes del mismo producto, basandonos en el mismo nombre del producto sin el monto
- /* const variantes = item
-    .filter(
-      (it) => baseKey(it.nombre) === key && it.plataforma === item.plataforma
-    )
-    .map((it) => ({
-      ...it,
-      precioNum: Number(it.precio), //extraigo el precio que viene del json como string
-      montoUSD: parseMontoUSD(it.nombre), //extraigo el monto en USD
-    }))
-    //ordeno las variantes obtenidas por monto en USD
-    .sort((a, b) => a.montoUSD - b.montoUSD);
-  console.log(variantes);*/
+    //Busco todas las variantes del mismo producto, basandonos en el mismo nombre del producto sin el monto
+const variantes = todos
+  .filter(
+    (it) => baseKey(it.nombre) === key && it.plataforma === item.plataforma
+  )
+  .map((it) => ({
+    ...it,
+    precioNum: Number(it.precio),
+    montoUSD: parseMontoUSD(it.nombre),
+  }))
+      //ordeno las variantes obtenidas por monto en USD
+  .sort((a, b) => a.montoUSD - b.montoUSD);
+
+console.log(variantes);
   // Agrego el contenido al html con el item seleccionado, buscando en el DOM por sus clases y poniendo la informacion del item seleccionado
   const imagen = document.querySelector(".item-image img"); // busco en product.html el primer elemento del DOM que coincida
   imagen.src = `/images/${item.image}`;
@@ -55,7 +58,7 @@ const renderizarItemSeleccionado=async()=> {
   grid.innerHTML = "";
   //Para cada variante creo un boton, creando el elemento en memoria
   if (variantes.length > 1) {
-    /*variantes.forEach((v) => {
+    variantes.forEach((v) => {
       //esto crea en el documento un <button></button>
       const btn = document.createElement("button");
       btn.type = "button";
@@ -86,7 +89,7 @@ const renderizarItemSeleccionado=async()=> {
       });
       //agrego el boton al grid
       grid.appendChild(btn);
-    });*/
+    });
   } else {
     //si es un item sin variantes, oculto el texto
     const textoVariante = document.querySelector(".texto-variantes");
