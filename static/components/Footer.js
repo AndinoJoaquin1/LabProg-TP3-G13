@@ -10,7 +10,7 @@ class Footer extends HTMLElement {
           <h4 class="footer-section-title">Navegación</h4>
           <ul>
             <li><a href="/">Inicio</a></li>
-            <li><a href="shopping-cart.html">Carrito</a></li>
+            <li><a href="/cart">Carrito</a></li>
           </ul>
         </div>
         <div class="footer-section">
