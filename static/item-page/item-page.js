@@ -107,7 +107,7 @@ const agregarItemCarrito = () => {
   //se obtiene el item del localstorage
   let item = JSON.parse(localStorage.getItem("item"));
   //se busca el item en el carrito
-  itemEnCarrito = carrito.find((i) => i.id == item.id);
+  itemEnCarrito = carrito.find((i) => i._id == item._id);
   //si el item ya existe en el carrito, se aumenta la cantidad
   if (itemEnCarrito) {
     itemEnCarrito.cantidad++;

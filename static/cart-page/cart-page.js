@@ -27,7 +27,7 @@ const listarProductosCarrito = () => {
 
     //se añaden propiedades a los items
     divCartItem.classList.add("cart-item");
-    divCartItem.id = item.id;
+    divCartItem.id = item._id;
 
     divCartImageBox.classList.add("cart-item-image-box");
     divCartInfo.classList.add("cart-item-info");
@@ -44,7 +44,7 @@ const listarProductosCarrito = () => {
     plusButton.classList.add("quantity-button");
     plusButton.textContent = "+";
     plusButton.addEventListener("click", function () {
-      sumarCantidad(item.id, 1);
+      sumarCantidad(item._id, 1);
     });
 
     paragQuantityText.classList.add("quantity-text");
@@ -53,7 +53,7 @@ const listarProductosCarrito = () => {
     minusButton.classList.add("quantity-button");
     minusButton.textContent = "-";
     minusButton.addEventListener("click", function () {
-      sumarCantidad(item.id, -1);
+      sumarCantidad(item._id, -1);
     });
 
     paragSubTotal.classList.add("sub-total-text");
@@ -64,7 +64,7 @@ const listarProductosCarrito = () => {
 
     trashButton.classList.add("trash-button");
     trashButton.addEventListener("click", function () {
-      borrarItemCarrito(item.id);
+      borrarItemCarrito(item._id);
     });
     trashImg.src = "/images/trash.png";
     trashImg.alt = "eliminar";
@@ -101,7 +101,7 @@ const listarProductosCarrito = () => {
 const sumarCantidad = (cartId, value) => {
   const carrito = JSON.parse(localStorage.getItem("carrito"));
   //se busca el item en el carrito
-  let item = carrito.find((i) => i.id === cartId);
+  let item = carrito.find((i) => i._id === cartId);
   console.log(item);
 
   //se obtiene el elemento del html
@@ -137,7 +137,7 @@ const borrarItemCarrito = (cartId) => {
   //se obtiene el carrito del localstorage
   const carrito = JSON.parse(localStorage.getItem("carrito"));
   //se elimina el item del carrito
-  const indice = carrito.findIndex((i) => i.id === cartId);
+  const indice = carrito.findIndex((i) => i._id === cartId);
   if (indice > -1) {
     carrito.splice(indice, 1);
   }
