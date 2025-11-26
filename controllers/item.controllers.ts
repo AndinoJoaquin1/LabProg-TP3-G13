@@ -18,7 +18,7 @@ export const createItem = async (req: Request<{}, {}, Item>, res: Response) => {
 
 }
 
-export const getAllItems = async (req:Request,res: Response) => {
+export const getAllItems = async (req: Request, res: Response) => {
     try {
         const items = await ItemRepo.getAllItems()
         res.status(200).json(items)
@@ -32,6 +32,18 @@ export const getAllItems = async (req:Request,res: Response) => {
 export const getItemById = async (req: Request, res: Response) => {
     try {
         const item = await ItemRepo.findItemWithId(req.params.id)
+        res.status(200).json(item)
+    } catch (error) {
+        res.status(500).json({
+            msg: "internal server error"
+        })
+    }
+}
+
+export const getItemsByNameMatch = async (req: Request, res: Response) => {
+    try {
+        const { exp } = req.query
+        const item = await ItemRepo.getItemsByNameMatch(exp)
         res.status(200).json(item)
     } catch (error) {
         res.status(500).json({

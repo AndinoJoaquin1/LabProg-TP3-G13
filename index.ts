@@ -29,5 +29,6 @@ app.use('/components',express.static("static/components"))
 app.use('/common',express.static("static/common"))
 app.use('/images',express.static("static/img"))
 app.use('/item/:id/:nombre',express.static("static/item-page"))
+app.use('/cart',express.static("static/cart-page"))
 
 app.listen(3000, () => { console.log("ola2") })
