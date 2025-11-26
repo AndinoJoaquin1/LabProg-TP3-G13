@@ -35,22 +35,23 @@ const mostrarResultadosBusqueda = async () => {
     );
     //luego, por cada item que coincida, se crea un html y se agrega a la lista de resultados
     resultados.forEach((item) => {
-      const div = document.createElement("div");
-      div.classList.add("result-item");
+      const a = document.createElement("a");
+      a.href = `/item/${item._id}/${item.nombre}`;
+      a.classList.add("result-item");
+
       const img = document.createElement("img");
-      img.src = `/images/${item.image}`
+      img.src = `/images/${item.image}`;
       img.alt = item.nombre;
       img.classList.add("result-image");
+
       const nombre = document.createElement("span");
       nombre.textContent = item.nombre;
       nombre.classList.add("result-name");
-      div.appendChild(img);
-      div.appendChild(nombre);
-      div.addEventListener("click", () => {
-        localStorage.setItem("item", JSON.stringify(item));
-        window.location.href = "product.html";
-      });
-      listaResultados.appendChild(div);
+
+      a.appendChild(img);
+      a.appendChild(nombre);
+
+      listaResultados.appendChild(a);
     });
   });
 };
