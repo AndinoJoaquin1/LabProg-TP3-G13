@@ -42,9 +42,21 @@ export const getItemById = async (req: Request, res: Response) => {
 
 export const getItemsByNameMatch = async (req: Request, res: Response) => {
     try {
-        const { exp } = req.query
+        const { exp } = req.params
         const item = await ItemRepo.getItemsByNameMatch(exp)
         res.status(200).json(item)
+    } catch (error) {
+        res.status(500).json({
+            msg: "internal server error"
+        })
+    }
+}
+
+export const getItemsByCantidad = async (req: Request, res: Response) => {
+    try {
+        const { from, limit } = req.query;
+        const items = await ItemRepo.getItemsByCantidad(from, limit);
+        res.status(200).json(items)
     } catch (error) {
         res.status(500).json({
             msg: "internal server error"
